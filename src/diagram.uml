@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Abstraction</OriginalElement>
+  <nodes>
+    <node x="303.0" y="130.0">Nodes.UndirectedNode</node>
+    <node x="801.4088541666667" y="230.0">AdjacencyMatrix.AdjacencyMatrixUndirectedGraph</node>
+    <node x="0.0" y="465.0">GraphAlgorithms.GraphToolsList</node>
+    <node x="291.35416666666674" y="310.0">AdjacencyList.UndirectedValuedGraph</node>
+    <node x="689.0" y="130.0">Abstraction.IUndirectedGraph</node>
+    <node x="9.0" y="385.0">GraphAlgorithms.GraphTools</node>
+    <node x="458.0" y="130.0">Abstraction.IDirectedGraph</node>
+    <node x="122.3541666666668" y="230.0">AdjacencyList.DirectedGraph</node>
+    <node x="913.1588541666667" y="130.0">Abstraction.AbstractMatrixGraph</node>
+    <node x="783.4088541666667" y="310.0">AdjacencyMatrix.AdjacencyMatrixUndirectedValuedGraph</node>
+    <node x="104.3541666666668" y="310.0">AdjacencyList.DirectedValuedGraph</node>
+    <node x="0.0" y="130.0">Nodes.DirectedNode</node>
+    <node x="515.4088541666667" y="310.0">AdjacencyMatrix.AdjacencyMatrixDirectedValuedGraph</node>
+    <node x="629.0" y="385.0">Collection.Pair</node>
+    <node x="172.0" y="385.0">GraphAlgorithms.BinaryHeapEdge</node>
+    <node x="548.2005208333333" y="0.0">Abstraction.IGraph</node>
+    <node x="533.4088541666667" y="230.0">AdjacencyMatrix.AdjacencyMatrixDirectedGraph</node>
+    <node x="309.35416666666674" y="230.0">AdjacencyList.UndirectedGraph</node>
+    <node x="306.7421875" y="0.0">Nodes.AbstractNode</node>
+    <node x="352.0" y="385.0">GraphAlgorithms.BinaryHeap</node>
+    <node x="506.0" y="385.0">Collection.Triple</node>
+    <node x="141.0" y="130.0">Abstraction.AbstractListGraph</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="AdjacencyList.DirectedGraph" target="Abstraction.IDirectedGraph">
+      <point x="41.33333333333337" y="-15.0" />
+      <point x="225.68750000000017" y="190.0" />
+      <point x="489.75" y="190.0" />
+      <point x="-31.75" y="15.0" />
+    </edge>
+    <edge source="AdjacencyMatrix.AdjacencyMatrixDirectedValuedGraph" target="AdjacencyMatrix.AdjacencyMatrixDirectedGraph">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="AdjacencyMatrix.AdjacencyMatrixDirectedGraph" target="Abstraction.AbstractMatrixGraph">
+      <point x="53.0" y="-15.0" />
+      <point x="692.4088541666667" y="210.0" />
+      <point x="952.4088541666667" y="210.0" />
+      <point x="-39.25" y="15.0" />
+    </edge>
+    <edge source="Abstraction.IUndirectedGraph" target="Abstraction.IGraph">
+      <point x="35.25" y="-15.0" />
+      <point x="794.75" y="70.0" />
+      <point x="600.0755208333333" y="70.0" />
+      <point x="10.375" y="15.0" />
+    </edge>
+    <edge source="Abstraction.AbstractMatrixGraph" target="Nodes.AbstractNode">
+      <point x="-39.25" y="-15.0" />
+      <point x="952.4088541666667" y="60.0" />
+      <point x="417.65885416666663" y="60.0" />
+      <point x="50.41666666666663" y="15.0" />
+    </edge>
+    <edge source="Abstraction.IUndirectedGraph" target="Nodes.AbstractNode">
+      <point x="-35.25" y="-15.0" />
+      <point x="724.25" y="80.0" />
+      <point x="397.4921875" y="80.0" />
+      <point x="30.25" y="15.0" />
+    </edge>
+    <edge source="Abstraction.AbstractMatrixGraph" target="Abstraction.IGraph">
+      <point x="39.25" y="-15.0" />
+      <point x="1030.9088541666667" y="50.0" />
+      <point x="620.8255208333334" y="50.0" />
+      <point x="31.125000000000057" y="15.0" />
+    </edge>
+    <edge source="AdjacencyList.UndirectedGraph" target="Nodes.UndirectedNode">
+      <point x="0.0" y="-15.0" />
+      <point x="378.35416666666674" y="180.0" />
+      <point x="370.5" y="180.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Nodes.UndirectedNode" target="Nodes.AbstractNode">
+      <point x="0.0" y="-15.0" />
+      <point x="370.5" y="90.0" />
+      <point x="357.15885416666663" y="90.0" />
+      <point x="-10.083333333333371" y="15.0" />
+    </edge>
+    <edge source="GraphAlgorithms.GraphToolsList" target="GraphAlgorithms.GraphTools">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="AdjacencyList.UndirectedGraph" target="Abstraction.AbstractListGraph">
+      <point x="-46.0" y="-15.0" />
+      <point x="332.35416666666674" y="180.0" />
+      <point x="247.5" y="180.0" />
+      <point x="35.5" y="15.0" />
+    </edge>
+    <edge source="Nodes.DirectedNode" target="Nodes.AbstractNode">
+      <point x="0.0" y="-15.0" />
+      <point x="60.5" y="80.0" />
+      <point x="316.82552083333337" y="80.0" />
+      <point x="-50.41666666666663" y="15.0" />
+    </edge>
+    <edge source="AdjacencyList.UndirectedValuedGraph" target="AdjacencyList.UndirectedGraph">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="AdjacencyList.DirectedValuedGraph" target="AdjacencyList.DirectedGraph">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="AdjacencyList.DirectedGraph" target="Abstraction.AbstractListGraph">
+      <point x="0.0" y="-15.0" />
+      <point x="184.3541666666668" y="210.0" />
+      <point x="176.5" y="210.0" />
+      <point x="-35.5" y="15.0" />
+    </edge>
+    <edge source="AdjacencyList.DirectedGraph" target="Nodes.DirectedNode">
+      <point x="-41.33333333333337" y="-15.0" />
+      <point x="143.02083333333343" y="210.0" />
+      <point x="60.5" y="210.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Abstraction.IDirectedGraph" target="Nodes.AbstractNode">
+      <point x="-31.75" y="-15.0" />
+      <point x="489.75" y="90.0" />
+      <point x="377.32552083333337" y="90.0" />
+      <point x="10.083333333333371" y="15.0" />
+    </edge>
+    <edge source="AdjacencyMatrix.AdjacencyMatrixUndirectedValuedGraph" target="AdjacencyMatrix.AdjacencyMatrixUndirectedGraph">
+      <point x="5.6843418860808015E-14" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="AdjacencyMatrix.AdjacencyMatrixDirectedGraph" target="Abstraction.IDirectedGraph">
+      <point x="-53.0" y="-15.0" />
+      <point x="586.4088541666667" y="190.0" />
+      <point x="553.25" y="190.0" />
+      <point x="31.75" y="15.0" />
+    </edge>
+    <edge source="Abstraction.AbstractListGraph" target="Nodes.AbstractNode">
+      <point x="-35.5" y="-15.0" />
+      <point x="176.5" y="90.0" />
+      <point x="336.9921875" y="90.0" />
+      <point x="-30.25" y="15.0" />
+    </edge>
+    <edge source="AdjacencyMatrix.AdjacencyMatrixUndirectedGraph" target="Abstraction.AbstractMatrixGraph">
+      <point x="56.5" y="-15.0" />
+      <point x="970.9088541666667" y="210.0" />
+      <point x="1030.9088541666667" y="210.0" />
+      <point x="39.25" y="15.0" />
+    </edge>
+    <edge source="Abstraction.IDirectedGraph" target="Abstraction.IGraph">
+      <point x="31.75" y="-15.0" />
+      <point x="553.25" y="110.0" />
+      <point x="579.3255208333333" y="110.0" />
+      <point x="-10.375" y="15.0" />
+    </edge>
+    <edge source="AdjacencyMatrix.AdjacencyMatrixUndirectedGraph" target="Abstraction.IUndirectedGraph">
+      <point x="-56.5" y="-15.0" />
+      <point x="857.9088541666667" y="200.0" />
+      <point x="794.75" y="200.0" />
+      <point x="35.25" y="15.0" />
+    </edge>
+    <edge source="AdjacencyList.UndirectedGraph" target="Abstraction.IUndirectedGraph">
+      <point x="46.0" y="-15.0" />
+      <point x="424.35416666666674" y="200.0" />
+      <point x="724.25" y="200.0" />
+      <point x="-35.25" y="15.0" />
+    </edge>
+    <edge source="Abstraction.AbstractListGraph" target="Abstraction.IGraph">
+      <point x="35.5" y="-15.0" />
+      <point x="247.5" y="100.0" />
+      <point x="558.5755208333333" y="100.0" />
+      <point x="-31.125" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="149.0" y="70.0" />
+  <SelectedNodes>
+    <node>Abstraction.AbstractListGraph</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
