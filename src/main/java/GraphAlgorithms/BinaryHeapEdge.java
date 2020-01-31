@@ -31,20 +31,23 @@ public class BinaryHeapEdge<A> {
 	 */
     public void insert(A from, A to, int val) {
     	// To complete
-//		if (pos == 0) {
-//			this.nodes[pos] = element;
-//		} else {
-//			this.nodes[pos] = element;
-//			int indexElem = pos;
-//			for (int i = (pos / 2); i >= 0; i--) {
-//				if (this.nodes[i] > element) {
-//					swap(i, indexElem);
-////                    System.out.println("swap: idx:" + i + "=" + nodes[i] + " et idx:" + indexElem + "=" + nodes[indexElem]);
-//					indexElem = i;
-//				}
-//			}
+
+		// Tant que on est pas a la racine et que le pere est superieur
+		// swap ma position avec mon pere
+//		if (pos >= this.nodes.length) {
+//			this.resize();
 //		}
-//		pos = pos + 1;
+//		if (this.nodes[pos] == Integer.MAX_VALUE) {
+//			this.nodes[pos] = element;
+//			int child = pos;
+//			int father = (child - 1) / 2;
+//			while (child >= 0 && element < this.nodes[father]) {
+//				this.swap(father, child);
+//				child = father;
+//				father = (child - 1) / 2;
+//			}
+//			pos++;
+//		}
     }
 
     
@@ -72,8 +75,11 @@ public class BinaryHeapEdge<A> {
         if (isLeaf(src)) { // the leaf is a stopping case, then we return a default value
             return Integer.MAX_VALUE;
         } else {
-        	// To complete
-        	return Integer.MAX_VALUE;
+			if ( binh.get(2*src +1).getThird() > binh.get(2*src +2).getThird()) {
+				return 2*src +2;
+			} else {
+				return 2*src +1;
+			}
         }
     }
 

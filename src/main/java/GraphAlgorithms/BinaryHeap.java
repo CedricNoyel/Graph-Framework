@@ -56,13 +56,20 @@ public class BinaryHeap {
 
     // Remove the root node
     public int remove() {
-        BinaryHeap a = new BinaryHeap();
-        for (int i = 1; i < pos; i++) {
-            a.insert(this.nodes[i]);
+        int temp = 0;
+        pos = pos - 1;
+
+        swap(0, pos);
+        int nodeToRemove = nodes[pos];
+        nodes[pos] = Integer.MAX_VALUE;
+        int idxChild = getBestChildPos(temp);
+
+        while (idxChild != Integer.MAX_VALUE && nodes[temp] > nodes[idxChild]) {
+            swap(temp, idxChild);
+            temp = idxChild;
+            idxChild = getBestChildPos(temp);
         }
-        this.pos = pos - 1;
-        this.nodes = a.nodes;
-        return 1;
+        return nodeToRemove; // return the removed node value
     }
 
     private int getBestChildPos(int src) {
