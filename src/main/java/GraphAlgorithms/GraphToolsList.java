@@ -216,6 +216,29 @@ public class GraphToolsList  extends GraphTools {
 //        System.out.println("explorerGraph - DEBUT: " + Arrays.toString(debut));
     }
 
+    public static AbstractListGraph inverserGaph(AbstractListGraph g1) {
+        System.out.println(g1.toString());
+        List<DirectedNode> nodes = g1.getNodes();
+        AbstractListGraph b = new DirectedGraph();
+
+        for (DirectedNode x : nodes) {
+            for (AbstractNode y : nodes) {
+                for (int k = y.getLabel(); k < y.getLabel() + 1; k++) {
+                    if ((AbstractNode) g1.getNodes().get(k) == x) {
+                        // TODO
+                    }
+                }
+            }
+        }
+//        Pour x := 1 à n
+//            Pour y := 1 à n
+//                Pour k := NODE[y] à NODE[y+1]-1
+//                Si SUCC[k] = x
+//                    alors y est prédécesseur de x
+
+        return g1;
+    }
+
 
 	public static void main(String[] args) {
 		int[][] Matrix = GraphTools.generateGraphData(10, 7, false, false, true, 100001);
@@ -236,11 +259,10 @@ public class GraphToolsList  extends GraphTools {
         long bfsTime = (endTime - startTime) / 1000000;
 
         System.out.println("");
-        System.out.println("===== EXECUTION TIME =====");
-        System.out.println("Time to explore all nodes");
+        System.out.println("===== EXECUTION TIME TO DISCOVER GRAPH =====");
         System.out.println("bfsTime: " + bfsTime + " ms");
         System.out.println("dfsTime: " + dfsTime + " ms");
-        System.out.println("===============================");
+        System.out.println("============================================");
 
 
         AbstractListGraph<AbstractNode> al2 = new DirectedGraph(Matrix);
@@ -249,5 +271,7 @@ public class GraphToolsList  extends GraphTools {
         System.out.println("===== EXECUTION TIME =====");
         AbstractListGraph<UndirectedNode> al3 = new UndirectedGraph<>(Matrix);
         explorerGraph(al2);
+
+        inverserGaph(al);
 	}
 }

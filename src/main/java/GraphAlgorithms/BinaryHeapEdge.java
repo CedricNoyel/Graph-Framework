@@ -31,6 +31,20 @@ public class BinaryHeapEdge<A> {
 	 */
     public void insert(A from, A to, int val) {
     	// To complete
+//		if (pos == 0) {
+//			this.nodes[pos] = element;
+//		} else {
+//			this.nodes[pos] = element;
+//			int indexElem = pos;
+//			for (int i = (pos / 2); i >= 0; i--) {
+//				if (this.nodes[i] > element) {
+//					swap(i, indexElem);
+////                    System.out.println("swap: idx:" + i + "=" + nodes[i] + " et idx:" + indexElem + "=" + nodes[indexElem]);
+//					indexElem = i;
+//				}
+//			}
+//		}
+//		pos = pos + 1;
     }
 
     
