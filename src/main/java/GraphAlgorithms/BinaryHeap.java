@@ -46,7 +46,6 @@ public class BinaryHeap {
             for (int i = (pos / 2); i >= 0; i--) {
                 if (this.nodes[i] > element) {
                     swap(i, indexElem);
-//                    System.out.println("swap: idx:" + i + "=" + nodes[i] + " et idx:" + indexElem + "=" + nodes[indexElem]);
                     indexElem = i;
                 }
             }
@@ -76,14 +75,9 @@ public class BinaryHeap {
         if (isLeaf(src)) { // the leaf is a stopping case, then we return a default value
             return Integer.MAX_VALUE;
         } else {
-            if ( this.nodes[2*src +1] > this.nodes[2*src +2]) {
-                return 2*src +2;
-            } else {
-                return 2*src +1;
-            }
+            return this.nodes[2*src +1] > this.nodes[2*src +2] ? 2 * src + 2 : 2 * src + 1;
         }
     }
-
     
     /**
 	 * Test if the node is a leaf in the binary heap
