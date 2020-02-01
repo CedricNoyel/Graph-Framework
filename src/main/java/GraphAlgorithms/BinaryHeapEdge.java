@@ -5,6 +5,7 @@ import java.util.List;
 
 import Collection.Triple;
 import Nodes.DirectedNode;
+import sun.tools.jar.resources.jar;
 
 public class BinaryHeapEdge<A> {
 
@@ -30,24 +31,16 @@ public class BinaryHeapEdge<A> {
 	 * @param val the edge weight
 	 */
     public void insert(A from, A to, int val) {
-    	// To complete
+		this.binh.add(new Triple<>(from, to, val));
+    	int idxChild = this.binh.size() - 1;
+    	int idxFather = (idxChild - 1) / 2;;
 
 		// Tant que on est pas a la racine et que le pere est superieur
-		// swap ma position avec mon pere
-//		if (pos >= this.nodes.length) {
-//			this.resize();
-//		}
-//		if (this.nodes[pos] == Integer.MAX_VALUE) {
-//			this.nodes[pos] = element;
-//			int child = pos;
-//			int father = (child - 1) / 2;
-//			while (child >= 0 && element < this.nodes[father]) {
-//				this.swap(father, child);
-//				child = father;
-//				father = (child - 1) / 2;
-//			}
-//			pos++;
-//		}
+    	while (idxChild >= 0 && this.binh.get(idxChild).getThird() < this.binh.get(idxFather).getThird()) {
+    		swap(idxFather, idxChild);
+			idxChild = idxFather;
+			idxFather = (idxChild - 1) / 2;
+		}
     }
 
     
@@ -75,7 +68,7 @@ public class BinaryHeapEdge<A> {
         if (isLeaf(src)) { // the leaf is a stopping case, then we return a default value
             return Integer.MAX_VALUE;
         } else {
-			if ( binh.get(2*src +1).getThird() > binh.get(2*src +2).getThird()) {
+			if ( binh.get(2*src +1).getThird() > binh.get(2*src +2).getThird() ) {
 				return 2*src +2;
 			} else {
 				return 2*src +1;
@@ -192,7 +185,8 @@ public class BinaryHeapEdge<A> {
         }
         // A completer
         
-        System.out.println(jarjarBin.test());
+//        System.out.println(jarjarBin.test());
+		jarjarBin.lovelyPrinting();
     }
 
 }
