@@ -46,7 +46,6 @@ public class BinaryHeap {
             for (int i = (pos / 2); i >= 0; i--) {
                 if (this.nodes[i] > element) {
                     swap(i, indexElem);
-//                    System.out.println("swap: idx:" + i + "=" + nodes[i] + " et idx:" + indexElem + "=" + nodes[indexElem]);
                     indexElem = i;
                 }
             }
@@ -56,27 +55,29 @@ public class BinaryHeap {
 
     // Remove the root node
     public int remove() {
-        BinaryHeap a = new BinaryHeap();
-        for (int i = 1; i < pos; i++) {
-            a.insert(this.nodes[i]);
+        int temp = 0;
+        pos = pos - 1;
+
+        swap(0, pos);
+        int nodeToRemove = nodes[pos];
+        nodes[pos] = Integer.MAX_VALUE;
+        int idxChild = getBestChildPos(temp);
+
+        while (idxChild != Integer.MAX_VALUE && nodes[temp] > nodes[idxChild]) {
+            swap(temp, idxChild);
+            temp = idxChild;
+            idxChild = getBestChildPos(temp);
         }
-        this.pos = pos - 1;
-        this.nodes = a.nodes;
-        return 1;
+        return nodeToRemove; // return the removed node value
     }
 
     private int getBestChildPos(int src) {
         if (isLeaf(src)) { // the leaf is a stopping case, then we return a default value
             return Integer.MAX_VALUE;
         } else {
-            if ( this.nodes[2*src +1] > this.nodes[2*src +2]) {
-                return 2*src +2;
-            } else {
-                return 2*src +1;
-            }
+            return this.nodes[2*src +1] > this.nodes[2*src +2] ? 2 * src + 2 : 2 * src + 1;
         }
     }
-
     
     /**
 	 * Test if the node is a leaf in the binary heap

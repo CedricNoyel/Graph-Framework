@@ -5,6 +5,7 @@ import java.util.List;
 
 import Collection.Triple;
 import Nodes.DirectedNode;
+import sun.tools.jar.resources.jar;
 
 public class BinaryHeapEdge<A> {
 
@@ -30,21 +31,16 @@ public class BinaryHeapEdge<A> {
 	 * @param val the edge weight
 	 */
     public void insert(A from, A to, int val) {
-    	// To complete
-//		if (pos == 0) {
-//			this.nodes[pos] = element;
-//		} else {
-//			this.nodes[pos] = element;
-//			int indexElem = pos;
-//			for (int i = (pos / 2); i >= 0; i--) {
-//				if (this.nodes[i] > element) {
-//					swap(i, indexElem);
-////                    System.out.println("swap: idx:" + i + "=" + nodes[i] + " et idx:" + indexElem + "=" + nodes[indexElem]);
-//					indexElem = i;
-//				}
-//			}
-//		}
-//		pos = pos + 1;
+		this.binh.add(new Triple<>(from, to, val));
+    	int idxChild = this.binh.size() - 1;
+    	int idxFather = (idxChild - 1) / 2;;
+
+		// Tant que on est pas a la racine et que le pere est superieur
+    	while (idxChild >= 0 && this.binh.get(idxChild).getThird() < this.binh.get(idxFather).getThird()) {
+    		swap(idxFather, idxChild);
+			idxChild = idxFather;
+			idxFather = (idxChild - 1) / 2;
+		}
     }
 
     
@@ -55,9 +51,17 @@ public class BinaryHeapEdge<A> {
 	 * 
 	 */
     public Triple<A,A,Integer> remove() {
-    	// To complete
-    	return null;
-        
+		this.swap(0, this.binh.size() - 1);
+		Triple<A, A, Integer> myNode = this.binh.get(this.binh.size() - 1);
+		this.binh.remove(this.binh.size() - 1);
+		int temp = 0;
+		int idxBestChild = this.getBestChildPos(temp);
+		while (idxBestChild < this.binh.size() && this.binh.get(temp).getThird() > this.binh.get(idxBestChild).getThird()) {
+			this.swap(temp, idxBestChild);
+			temp = idxBestChild;
+			idxBestChild = this.getBestChildPos(temp);
+		}
+		return myNode;
     }
     
 
@@ -68,13 +72,12 @@ public class BinaryHeapEdge<A> {
 	 * @return the index of the child edge with the least weight
 	 */
     private int getBestChildPos(int src) {
-    	int lastIndex = binh.size()-1; 
-        if (isLeaf(src)) { // the leaf is a stopping case, then we return a default value
-            return Integer.MAX_VALUE;
-        } else {
-        	// To complete
-        	return Integer.MAX_VALUE;
-        }
+		int lastIndex = binh.size() - 1;
+		if (isLeaf(src)) { // the leaf is a stopping case, then we return a default value
+			return Integer.MAX_VALUE;
+		} else {
+			return 2*src+2 > this.binh.size() || this.binh.get(2 * src + 2).getThird() > this.binh.get(2 * src + 1).getThird() ? 2 * src + 1 : 2 * src + 2;
+		}
     }
 
     private boolean isLeaf(int src) {
@@ -186,7 +189,10 @@ public class BinaryHeapEdge<A> {
         }
         // A completer
         
-        System.out.println(jarjarBin.test());
+//        System.out.println(jarjarBin.test());
+		jarjarBin.lovelyPrinting();
+        jarjarBin.remove();
+		jarjarBin.lovelyPrinting();
     }
 
 }
