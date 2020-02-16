@@ -87,5 +87,4 @@ public class DirectedNode extends AbstractNode {
 	public void addPred(DirectedNode v,int val) {
 		this.preds.put(v, val);
 	}
-
 }
