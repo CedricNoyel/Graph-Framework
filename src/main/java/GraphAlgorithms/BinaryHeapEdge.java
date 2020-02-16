@@ -5,7 +5,6 @@ import java.util.List;
 
 import Collection.Triple;
 import Nodes.DirectedNode;
-import sun.tools.jar.resources.jar;
 
 public class BinaryHeapEdge<A> {
 

@@ -1,11 +1,5 @@
 package GraphAlgorithms;
 
-
-import com.sun.deploy.util.ArrayUtil;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class BinaryHeap {
 
     private int[] nodes;
@@ -33,7 +27,6 @@ public class BinaryHeap {
     }
 
     public void insert(int element) {
-    	// A completer
         if (pos >= this.nodes.length) {
             this.resize();
         }
@@ -129,18 +122,17 @@ public class BinaryHeap {
 
     public static void main(String[] args) {
         BinaryHeap jarjarBin = new BinaryHeap();
-//        System.out.println(jarjarBin.isEmpty() + "\n");
+        
         int k = 17;
         int m = k;
         int min = 2;
         int max = 20;
         while (k > 0) {
             int rand = min + (int) (Math.random() * ((max - min) + 1));
-//            System.out.print(" insert " + rand + " ;");
             jarjarBin.insert(rand);            
             k--;
         }
-     // A completer
+        
         System.out.println("\n" + jarjarBin);
         System.out.println(jarjarBin.test());
         jarjarBin.remove();

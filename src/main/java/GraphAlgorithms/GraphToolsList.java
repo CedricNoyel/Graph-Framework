@@ -12,7 +12,7 @@ import Nodes.DirectedNode;
 import Nodes.UndirectedNode;
 public class GraphToolsList  extends GraphTools {
 
-	private static int _DEBBUG =0;
+	private static int _DEBBUG = 0;
 
 	private static int[] visited;
 	private static int[] debut;
@@ -45,7 +45,7 @@ public class GraphToolsList  extends GraphTools {
     }
 
     // BFS using matrix
-	public static void BreadthFirstSearch(IGraph myGraph, int startNode) {
+	public static void breadthFirstSearch(IGraph myGraph, int startNode) {
 
 		List<Integer> toVisit = new ArrayList<>();
         int[][] adjMatrix = myGraph.toAdjacencyMatrix(); // adjMatrix[0][4] = 1 car 0 a comme successeur 4
@@ -57,49 +57,64 @@ public class GraphToolsList  extends GraphTools {
 		toVisit.add(0, startNode);
         int currentVisitedNode;
 
-        System.out.println("- BFS Started - ");
+        if (_DEBBUG == 1) {
+        	System.out.println("- BFS Started - ");
+        }
 
 	    while(toVisit.size() > 0)
 	    {
             currentVisitedNode = toVisit.get(0);
             visited[currentVisitedNode] = 1;
 
-            System.out.println("toVisit = " + toVisit);
-            System.out.println("Visit node : " + currentVisitedNode);
-            System.out.println("adjMatrix["+currentVisitedNode+"]: " + Arrays.toString(adjMatrix[currentVisitedNode]));
-            System.out.println("visited = " + Arrays.toString(visited));
+            if (_DEBBUG == 1) {
+            	System.out.println("toVisit = " + toVisit);
+                System.out.println("Visit node : " + currentVisitedNode);
+                System.out.println("adjMatrix["+currentVisitedNode+"]: " + Arrays.toString(adjMatrix[currentVisitedNode]));
+                System.out.println("visited = " + Arrays.toString(visited));
+            }
+            
 
 			for (int w = 0; w < adjMatrix[0].length ; w++) {
 				// Si noeud jamais visité et qu'il a un fils
 				if (visited[w] == 0 && adjMatrix[currentVisitedNode][w] == 1 && !toVisit.contains(w)) {
 					// Alors on ajoute le noeud fils dans la liste toVisit
 					toVisit.add(w);
-					System.out.println("Add node " + w + " to the toVisit list");
+					if (_DEBBUG == 1) {
+						System.out.println("Add node " + w + " to the toVisit list");
+					}
 				}
 			}
             // Dequeue visied node
             toVisit.remove(toVisit.indexOf(currentVisitedNode));
-            System.out.println("_______________________________________________________________________________________");
-
+            if (_DEBBUG == 1) {
+            	System.out.println("_______________________________________________________________________________________");
+            }
+            
             // DONE : If visited contains a 0, add the first node to the toVisit list
             // Check des graphs non connexes
             if (toVisit.size() == 0 && Arrays.stream(visited).anyMatch(n->n==0)) {
-                System.out.println("Exploration des graphs non connexes");
+            	if (_DEBBUG == 1) {
+            		System.out.println("Exploration des graphs non connexes");
+            	}
                 for (int n = 0; n < visited.length; n++) {
                     if (visited[n] == 0) {
-                        System.out.println("Add node " + n + " to the toVisit list");
+                    	if (_DEBBUG == 1) {
+                    		System.out.println("Add node " + n + " to the toVisit list");
+                    	}
                         toVisit.add(n);
                     }
                 }
             }
         }
-        System.out.println("- BFS Ended - ");
-        System.out.println("toVisit = " + toVisit);
-        System.out.println("visited = " + Arrays.toString(visited));
+	    if (_DEBBUG == 1) {
+	        System.out.println("- BFS Ended - ");
+	        System.out.println("toVisit = " + toVisit);
+	        System.out.println("visited = " + Arrays.toString(visited));
+	    }
 	}
 
 	// DFS using matrix
-	public static void DepthFirstSearch(IGraph myGraph, int startNode) {
+	public static void depthFirstSearch(IGraph myGraph, int startNode) {
 
         List<Integer> toVisit = new ArrayList<>();
         int[][] adjMatrix = myGraph.toAdjacencyMatrix(); // adjMatrix[0][4] = 1 car 0 a comme successeur 4
@@ -111,46 +126,63 @@ public class GraphToolsList  extends GraphTools {
         toVisit.add(0, startNode);
         int currentVisitedNode;
 
-        System.out.println("- DFS Started - ");
+        if (_DEBBUG == 1) {
+        	System.out.println("- DFS Started - ");
+        }
+        
         while(toVisit.size() > 0)
         {
             // We just always explore the last elem that we added to the list
             currentVisitedNode = toVisit.get(toVisit.size()-1);
             visited[currentVisitedNode] = 1;
-
-            System.out.println("toVisit = " + toVisit);
-            System.out.println("Visit node : " + currentVisitedNode);
-            System.out.println("adjMatrix["+currentVisitedNode+"]: " + Arrays.toString(adjMatrix[currentVisitedNode]));
-            System.out.println("visited = " + Arrays.toString(visited));
+            if (_DEBBUG == 1) {
+	            System.out.println("toVisit = " + toVisit);
+	            System.out.println("Visit node : " + currentVisitedNode);
+	            System.out.println("adjMatrix["+currentVisitedNode+"]: " + Arrays.toString(adjMatrix[currentVisitedNode]));
+	            System.out.println("visited = " + Arrays.toString(visited));
+            }
 
             for (int w = 0; w < adjMatrix[0].length ; w++) {
                 // Si noeud jamais visité et qu'il a un fils
                 if (visited[w] == 0 && adjMatrix[currentVisitedNode][w] == 1 && !toVisit.contains(w)) {
                     // Alors on ajoute le noeud fils dans la liste toVisit
                     toVisit.add(w);
-                    System.out.println("Add node " + w + " to the toVisit list");
+                    if (_DEBBUG == 1) {
+                    	System.out.println("Add node " + w + " to the toVisit list");
+                    }
                 }
             }
             // Dequeue visied node
             toVisit.remove(toVisit.indexOf(currentVisitedNode));
-            System.out.println("_______________________________________________________________________________________");
-
+            
+            if (_DEBBUG == 1) {
+            	System.out.println("_______________________________________________________________________________________");
+            }
+            
             // DONE : If visited contains a 0, add the first node to the toVisit list
             // Check des graphs non connexes
             if (toVisit.size() == 0 && Arrays.stream(visited).anyMatch(n->n==0)) {
-                System.out.println("Exploration des graphs non connexes");
+            	if (_DEBBUG == 1) {
+            		System.out.println("Exploration des graphs non connexes");
+            	}
+            	
                 for (int n = 0; n < visited.length; n++) {
                     if (visited[n] == 0) {
-                        System.out.println("Add node " + n + " to the toVisit list");
+                    	if (_DEBBUG == 1) {
+                    		System.out.println("Add node " + n + " to the toVisit list");
+                    	}
+                    	
                         toVisit.add(n);
                     }
                 }
             }
         }
 
-        System.out.println("- DFS Ended - ");
-        System.out.println("toVisit = " + toVisit);
-        System.out.println("visited = " + Arrays.toString(visited));
+        if (_DEBBUG == 1) {
+	        System.out.println("- DFS Ended - ");
+	        System.out.println("toVisit = " + toVisit);
+	        System.out.println("visited = " + Arrays.toString(visited));
+        }
 	}
 
 	// Calcule les sommets accessibles depuis s par une chaîne
@@ -274,13 +306,14 @@ public class GraphToolsList  extends GraphTools {
 
 
 	public static void main(String[] args) {
-		int[][] matrix = GraphTools.generateGraphData(10, 7, false, false, true, 100001);
+		int[][] matrix = GraphTools.generateGraphData(1000, 200, false, false, true, 100001);
 		DirectedGraph<DirectedNode> al = new DirectedGraph<>(matrix);
+		
+		int[][] matrix2 = GraphTools.generateGraphData(10, 7, false, false, true, 100001);
 
         runDfsBfsTest(al);
-        runExplorerGraphTest(matrix);
+        runExplorerGraphTest(matrix2);
         runDijkraTest();
-//        runBellmanTest(al);
 	}
 
     private static void runExplorerGraphTest(int[][] Matrix) {
@@ -297,12 +330,12 @@ public class GraphToolsList  extends GraphTools {
         long startTime, endTime;
 
         startTime = System.nanoTime(); // Get execution start time
-        BreadthFirstSearch(al, 0);
+        breadthFirstSearch(al, 0);
         endTime = System.nanoTime();
         long dfsTime = (endTime - startTime) / 1000000;
 
         startTime = System.nanoTime(); // Get execution start time
-        DepthFirstSearch(al, 0);
+        depthFirstSearch(al, 0);
         endTime = System.nanoTime();
         long bfsTime = (endTime - startTime) / 1000000;
 
@@ -315,8 +348,7 @@ public class GraphToolsList  extends GraphTools {
     }
 
     private static void runDijkraTest() {
-
-
+    	
         System.out.println("================ DIJKRA ====================");
         DirectedValuedGraph a = new DirectedValuedGraph(GraphTools.generateValuedGraphData(6, false, true, true, false, 100001));
         System.out.println(a.toString());
