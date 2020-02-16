@@ -52,7 +52,7 @@ public class GraphToolsList  extends GraphTools {
         }
     }
 
-	// A completer
+    // BFS using matrix
 	public static void BreadthFirstSearch(IGraph myGraph, int startNode) {
 
 		List<Integer> toVisit = new ArrayList<>();
@@ -105,7 +105,8 @@ public class GraphToolsList  extends GraphTools {
         System.out.println("toVisit = " + toVisit);
         System.out.println("visited = " + Arrays.toString(visited));
 	}
-	
+
+	// DFS using matrix
 	public static void DepthFirstSearch(IGraph myGraph, int startNode) {
 
         List<Integer> toVisit = new ArrayList<>();
@@ -162,7 +163,7 @@ public class GraphToolsList  extends GraphTools {
 
 	// Calcule les sommets accessibles depuis s par une chaîne
     public static void explorerSommet(AbstractNode s, AbstractListGraph a) {
-	    System.out.println("explorerSommet(" + s.getLabel() + ")   - cpt: " + cpt);
+//	    System.out.println("explorerSommet(" + s.getLabel() + ")   - cpt: " + cpt);
         debut[s.getLabel()] = cpt;
         visited[s.getLabel()] = 1;
         cpt++;
@@ -187,7 +188,7 @@ public class GraphToolsList  extends GraphTools {
         fin[s.getLabel()] = cpt;
     }
 
-    // Calcule les composantes connexe du graphe.
+    // Explorer le graph de maniere recursive en profondeur
 	public static void explorerGraph(AbstractListGraph<AbstractNode> g) {
         cpt = 0;
         debut = new int[g.getNbNodes()];
@@ -197,23 +198,15 @@ public class GraphToolsList  extends GraphTools {
 
         List<AbstractNode> nodes = g.getNodes();
 
-        if (first instanceof DirectedNode) {
-            for (AbstractNode i : nodes) {
-                if (visited[i.getLabel()] == 0) {
-                    explorerSommet(i, g);
-                }
-            }
-        } else {
-            for (AbstractNode i : nodes) {
-                if (visited[i.getLabel()] == 0) {
-                    explorerSommet(i, g);
-                }
+        for (AbstractNode i : nodes) {
+            if (visited[i.getLabel()] == 0) {
+                explorerSommet(i, g);
             }
         }
 
-//        System.out.println("explorerGraph - FIN: " + Arrays.toString(fin));
-//        System.out.println("explorerGraph - VISITED: " + Arrays.toString(visited));
-//        System.out.println("explorerGraph - DEBUT: " + Arrays.toString(debut));
+        System.out.println("explorerGraph - FIN: " + Arrays.toString(fin));
+        System.out.println("explorerGraph - VISITED: " + Arrays.toString(visited));
+        System.out.println("explorerGraph - DEBUT: " + Arrays.toString(debut));
     }
 
     public static AbstractListGraph inverserGaph(AbstractListGraph g1) {
@@ -239,13 +232,88 @@ public class GraphToolsList  extends GraphTools {
         return g1;
     }
 
+    // DIJKRA complexité O(a + n log n) pour n sommets et a arretes
+    public static void dijkra(AbstractListGraph g, DirectedNode startNode) {
+
+	    int n = g.getNbNodes();
+
+        int[] distance = new int[n];
+        boolean[] visited = new boolean[n];
+        DirectedNode[] predecessor = new DirectedNode[n];
+
+        for (int i = 0; i < n; i++) {
+            distance[i] = Integer.MAX_VALUE;
+            visited[i] = false;
+        }
+
+	    distance[startNode.getLabel()] = 0;
+        // On definit une listee trié par poids
+        PriorityQueue<DirectedNode> priorityQueue = new PriorityQueue<DirectedNode>( (a,b) -> a.getWeight() - b.getWeight());
+        priorityQueue.add(startNode);
+        visited[startNode.getLabel()] = true;
+
+        while( !priorityQueue.isEmpty() ){
+            // Getting the minimum distance node from priority queue
+            DirectedNode actualNode = priorityQueue.poll(); // get head
+
+            // Pour chaque fils du noeud
+            actualNode.getSuccs().forEach((currentNodeSucc, dist) -> {
+                // Si le noeud n'a jamais été visité
+                if(!visited[currentNodeSucc.getLabel()]) {
+                    int newDistance = distance[actualNode.getLabel()] + dist;
+
+                    if( newDistance < distance[currentNodeSucc.getLabel()] ){
+                        priorityQueue.remove(currentNodeSucc);
+                        distance[currentNodeSucc.getLabel()] = newDistance;
+                        predecessor[currentNodeSucc.getLabel()] = actualNode;
+                        priorityQueue.add(currentNodeSucc);
+                    }
+                }
+            });
+            visited[actualNode.getLabel()] = true;
+        }
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Disance node " + i + " -> " + distance[i]);
+        }
+
+
+    }
+
+    static private int getIndexMinInArray(int[] arr) {
+	    int min = Integer.MAX_VALUE;
+	    int idx = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < min) {
+                arr[i] = min;
+                idx = i;
+            }
+        }
+	    return idx;
+    }
+
 
 	public static void main(String[] args) {
-		int[][] Matrix = GraphTools.generateGraphData(10, 7, false, false, true, 100001);
-		GraphTools.afficherMatrix(Matrix);
-		DirectedGraph<DirectedNode> al = new DirectedGraph<>(Matrix);
-//		System.out.println(al);
+		int[][] matrix = GraphTools.generateGraphData(10, 7, false, false, true, 100001);
+		DirectedGraph<DirectedNode> al = new DirectedGraph<>(matrix);
 
+        runDfsBfsTest(al);
+        runExplorerGraphTest(matrix);
+        runDijkraTest();
+//        runBellmanTest(al);
+	}
+
+    private static void runExplorerGraphTest(int[][] Matrix) {
+
+        AbstractListGraph<AbstractNode> al2 = new DirectedGraph(Matrix);
+        explorerGraph(al2);
+
+        AbstractListGraph<AbstractNode> al3 = new UndirectedGraph(Matrix);
+        explorerGraph(al3);
+    }
+
+	private static void runDfsBfsTest(DirectedGraph<DirectedNode> al){
+        al.toAdjacencyMatrix().toString();
         long startTime, endTime;
 
         startTime = System.nanoTime(); // Get execution start time
@@ -264,14 +332,16 @@ public class GraphToolsList  extends GraphTools {
         System.out.println("dfsTime: " + dfsTime + " ms");
         System.out.println("============================================");
 
+    }
 
-        AbstractListGraph<AbstractNode> al2 = new DirectedGraph(Matrix);
-        explorerGraph(al2);
+    private static void runDijkraTest() {
 
-        System.out.println("===== EXECUTION TIME =====");
-        AbstractListGraph<UndirectedNode> al3 = new UndirectedGraph<>(Matrix);
-        explorerGraph(al2);
 
-        inverserGaph(al);
-	}
+        System.out.println("================ DIJKRA ====================");
+        DirectedValuedGraph a = new DirectedValuedGraph(GraphTools.generateValuedGraphData(6, false, true, true, false, 100001));
+        System.out.println(a.toString());
+        dijkra(a, a.getNodes().get(0));
+        System.out.println("============== FIN DIJKRA ==================");
+
+    }
 }
