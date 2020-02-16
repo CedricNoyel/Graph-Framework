@@ -232,6 +232,7 @@ public class GraphToolsList  extends GraphTools {
         return g1;
     }
 
+    // DIJKRA complexité O(a + n log n) pour n sommets et a arretes
     public static void dijkra(AbstractListGraph g, DirectedNode startNode) {
 
 	    int n = g.getNbNodes();
@@ -269,7 +270,7 @@ public class GraphToolsList  extends GraphTools {
                     }
                 }
             });
-            visited[actualNode.getLabel()] = true; // actualNode.setVisited(true);
+            visited[actualNode.getLabel()] = true;
         }
 
         for (int i = 0; i < n; i++) {
@@ -334,6 +335,8 @@ public class GraphToolsList  extends GraphTools {
     }
 
     private static void runDijkraTest() {
+
+
         System.out.println("================ DIJKRA ====================");
         DirectedValuedGraph a = new DirectedValuedGraph(GraphTools.generateValuedGraphData(6, false, true, true, false, 100001));
         System.out.println(a.toString());
