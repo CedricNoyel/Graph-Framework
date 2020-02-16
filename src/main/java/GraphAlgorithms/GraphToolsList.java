@@ -1,23 +1,15 @@
 package GraphAlgorithms;
 
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 import Abstraction.AbstractListGraph;
 import Abstraction.IGraph;
 import AdjacencyList.DirectedGraph;
 import AdjacencyList.DirectedValuedGraph;
 import AdjacencyList.UndirectedGraph;
-import AdjacencyList.UndirectedValuedGraph;
-import AdjacencyMatrix.AdjacencyMatrixDirectedGraph;
-import Collection.Triple;
 import Nodes.AbstractNode;
 import Nodes.DirectedNode;
 import Nodes.UndirectedNode;
-import com.sun.deploy.util.ArrayUtil;
-import java.lang.Object;
-
 public class GraphToolsList  extends GraphTools {
 
 	private static int _DEBBUG =0;
@@ -278,18 +270,6 @@ public class GraphToolsList  extends GraphTools {
         }
 
 
-    }
-
-    static private int getIndexMinInArray(int[] arr) {
-	    int min = Integer.MAX_VALUE;
-	    int idx = -1;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < min) {
-                arr[i] = min;
-                idx = i;
-            }
-        }
-	    return idx;
     }
 
 
